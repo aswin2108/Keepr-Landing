@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Keepr | Own Your Cloud</title>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <div id="app">
+    <nav class="navbar">
+      <div class="logo">
+        <!-- Inline SVG Logo -->
+        <svg width="120" height="40" viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg"
+          class="keepr-logo">
+          <path d="M15 10V30M15 20L25 10M15 20L25 30" stroke="#00ff9d" stroke-width="3" stroke-linecap="round"
+            stroke-linejoin="round" />
+          <text x="35" y="28" font-family="Space Grotesk" font-weight="700" font-size="24" fill="#ffffff"
+            letter-spacing="-1">Keepr</text>
+          <circle cx="110" cy="12" r="3" fill="#00ff9d" />
+        </svg>
+      </div>
+    </nav>
+
+    <main>
+      <!-- VIEW 1: HERO -->
+      <header id="hero-view" class="hero">
+        <div class="hero-content">
+          <h1>Complete<br><span class="highlight">Data Sovereignty</span></h1>
+          <p class="subtitle">The personal cloud device that sits in your home, not in a server farm. Encrypted.
+            Private. Yours.</p>
+
+          <form id="waitlist-form" class="waitlist-form">
+            <input type="email" placeholder="Enter your email" required />
+            <button type="submit">
+              <span>Join Waitlist</span>
+              <div class="btn-bg"></div>
+            </button>
+          </form>
+          <p class="micro-copy">Your data belongs to you. Take it back.</p>
+        </div>
+        <div class="hero-image">
+          <div class="glow-bg"></div>
+
+          <!-- FALLBACK VISUAL (CSS Only) - Kept for reliability -->
+          <div class="hologram-fallback">
+            <div class="hologram-ring ring-1"></div>
+            <div class="hologram-ring ring-2"></div>
+            <div class="hologram-ring ring-3"></div>
+          </div>
+
+          <!-- THREE.JS CANVAS (Restored) -->
+          <div id="canvas-container"
+            style="width: 100%; height: 500px; position: absolute; z-index: 2; top: 0; left: 0;"></div>
+        </div>
+      </header>
+
+      <!-- VIEW 2: WISHLIST SURVEY -->
+      <section id="wishlist-view" class="wishlist-container hidden">
+        <div class="wishlist-content">
+          <h2>Build your <span class="highlight">Keepr</span>.</h2>
+          <p class="subtitle">Customize the specs for your private vault.</p>
+
+          <form id="wishlist-form">
+            <div class="form-group">
+              <label>Registered Email</label>
+              <input type="email" id="wishlist-email" readonly class="readonly-input" />
+            </div>
+
+            <div class="form-group">
+              <label>Desired Storage</label>
+              <div class="options-grid">
+                <label class="option-card">
+                  <input type="radio" name="storage" value="2TB">
+                  <span class="card-content">2TB</span>
+                </label>
+                <label class="option-card">
+                  <input type="radio" name="storage" value="4TB" checked>
+                  <span class="card-content">4TB</span>
+                </label>
+                <label class="option-card">
+                  <input type="radio" name="storage" value="8TB">
+                  <span class="card-content">8TB</span>
+                </label>
+                <label class="option-card">
+                  <input type="radio" name="storage" value="16TB">
+                  <span class="card-content">16TB</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Battery Backup</label>
+              <div class="options-grid">
+                <label class="option-card">
+                  <input type="radio" name="battery" value="4hrs">
+                  <span class="card-content">4hrs</span>
+                </label>
+                <label class="option-card">
+                  <input type="radio" name="battery" value="8hrs" checked>
+                  <span class="card-content">8hrs</span>
+                </label>
+                <label class="option-card">
+                  <input type="radio" name="battery" value="12hrs">
+                  <span class="card-content">12hrs</span>
+                </label>
+                <label class="option-card">
+                  <input type="radio" name="battery" value="16hrs">
+                  <span class="card-content">16hrs</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Usage Purpose</label>
+              <div class="checkbox-grid">
+                <label class="checkbox-card">
+                  <input type="checkbox" name="purpose" value="Normal Storage">
+                  <span class="checkmark"></span>
+                  <span>Normal Data Storage</span>
+                </label>
+                <label class="checkbox-card">
+                  <input type="checkbox" name="purpose" value="Video Server">
+                  <span class="checkmark"></span>
+                  <span>Video Streaming Server</span>
+                </label>
+                <label class="checkbox-card">
+                  <input type="checkbox" name="purpose" value="Web Hosting">
+                  <span class="checkmark"></span>
+                  <span>Website Hosting</span>
+                </label>
+              </div>
+            </div>
+
+            <button type="submit" class="submit-wishlist">
+              Confirm Specs
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <!-- VIEW 3: SUCCESS -->
+      <section id="success-view" class="success-container hidden">
+        <div class="lock-animation">
+          <svg viewBox="0 0 24 24" class="lock-icon">
+            <path
+              d="M12 2C9.243 2 7 4.243 7 7V10H6C4.897 10 4 10.897 4 12V20C4 21.103 4.897 22 6 22H18C19.103 22 20 21.103 20 20V12C20 10.897 19.103 10 18 10H17V7C17 4.243 14.757 2 12 2ZM9 7C9 5.346 10.346 4 12 4C13.654 4 15 5.346 15 7V10H9V7ZM12 17C11.448 17 11 16.552 11 16C11 15.448 11.448 15 12 15C12.552 15 13 15.448 13 16C13 16.552 12.552 17 12 17Z" />
+          </svg>
+          <div class="lock-ring"></div>
+        </div>
+        <h2>Protocol Initiated.</h2>
+        <p>Your spot is secured. Welcome to the decentralized future, <span id="user-display-email"
+            class="highlight"></span>.</p>
+      </section>
+
+    </main>
+
+    <footer>
+      <p>&copy; 2025 Keepr Systems. Privacy is a right, not a luxury.</p>
+    </footer>
+  </div>
+  <script type="module" src="/main.js"></script>
+</body>
+
+</html>
