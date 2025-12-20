@@ -1,10 +1,13 @@
-export default {
-    root: './',
+const { resolve } = require('path')
+const { defineConfig } = require('vite')
+
+module.exports = defineConfig({
     build: {
-        outDir: 'dist',
-    },
-    server: {
-        port: 3000,
-        open: false
+        rollupOptions: {
+            input: {
+                main: resolve(__dirname, 'index.html'),
+                knowMore: resolve(__dirname, 'know-more/index.html')
+            }
+        }
     }
-}
+})

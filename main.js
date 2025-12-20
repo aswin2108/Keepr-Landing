@@ -129,8 +129,31 @@ function setupWishlist() {
   const successView = document.getElementById('success-view');
   const userDisplayEmail = document.getElementById('user-display-email');
   const emailInput = document.getElementById('wishlist-email');
+  const submitBtn = form ? form.querySelector('.submit-wishlist') : null;
+  const purposeCheckboxes = form ? form.querySelectorAll('input[name="purpose"]') : [];
 
   if (!form) return;
+
+  // --- VALIDATION: Checkbox Logic ---
+  function checkValidation() {
+    let anyChecked = false;
+    purposeCheckboxes.forEach(cb => {
+      if (cb.checked) anyChecked = true;
+    });
+
+    if (submitBtn) {
+      submitBtn.disabled = !anyChecked;
+    }
+  }
+
+  // Init State
+  checkValidation();
+
+  // Add Listeners
+  purposeCheckboxes.forEach(cb => {
+    cb.addEventListener('change', checkValidation);
+  });
+  // ----------------------------------
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
