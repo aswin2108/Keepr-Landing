@@ -125,6 +125,8 @@ a {
   font-weight: 600;
   transition: all 0.3s;
   font-size: 0.9rem;
+  background: transparent;
+  cursor: pointer;
 }
 
 .btn-secondary:hover {

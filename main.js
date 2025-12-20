@@ -6,11 +6,53 @@ document.addEventListener('DOMContentLoaded', () => {
   setupWaitlist();
   setupWishlist();
   initScene();
+  setupNavigation();
 });
 
 function validateEmail(email) {
   const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return re.test(String(email).toLowerCase());
+}
+
+// Navigation Logic
+function setupNavigation() {
+  const backBtnWishlist = document.getElementById('back-to-home-wishlist');
+  const backBtnSuccess = document.getElementById('back-to-home-success');
+
+  if (backBtnWishlist) {
+    backBtnWishlist.addEventListener('click', resetToHome);
+  }
+
+  if (backBtnSuccess) {
+    backBtnSuccess.addEventListener('click', resetToHome);
+  }
+}
+
+function resetToHome() {
+  const hero = document.getElementById('hero-view');
+  const features = document.getElementById('features-view');
+  const wishlist = document.getElementById('wishlist-view');
+  const success = document.getElementById('success-view');
+
+  // Hide Overlay Views
+  wishlist.classList.add('hidden');
+  wishlist.classList.remove('fade-out'); // Reset animation class for next time
+  success.classList.add('hidden');
+
+  // Show Home Views
+  hero.classList.remove('hidden', 'fade-out');
+  // Force reflow to restart animations if needed, but simple remove is mostly fine
+  hero.style.opacity = '1';
+  hero.style.transform = 'scale(1)';
+
+  if (features) {
+    features.classList.remove('hidden', 'fade-out');
+    features.style.opacity = '1';
+  }
+
+  // Reset Scroll
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  document.body.style.overflow = 'auto'; // Ensure scroll is unlocked
 }
 
 function setupWaitlist() {
@@ -44,8 +86,8 @@ function setupWaitlist() {
 
     // Firebase: Add to 'waitlist' collection
     if (submitBtn) {
-      submitBtn.disabled = true;
-      submitBtn.innerHTML = '<span>Securing Spot...</span><div class="btn-bg"></div>';
+      // Optional: Loading state, but reset it quickly if we want to allow back/forth
+      // keeping it simple for now
     }
 
     try {
@@ -92,6 +134,8 @@ function setupWishlist() {
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
+
+    // Check if it's the submit button clicked (form submit event handles this generally)
 
     const formData = new FormData(form);
 
