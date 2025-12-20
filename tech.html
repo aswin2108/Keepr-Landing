@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Keepr | Technical Specifications</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div id="app">
+        <nav class="navbar">
+            <a href="/" class="logo-link">
+                <div class="logo">
+                    <!-- Inline SVG Logo -->
+                    <svg width="120" height="40" viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg"
+                        class="keepr-logo">
+                        <path d="M15 10V30M15 20L25 10M15 20L25 30" stroke="#00ff9d" stroke-width="3"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                        <text x="35" y="28" font-family="Space Grotesk" font-weight="700" font-size="24" fill="#ffffff"
+                            letter-spacing="-1">Keepr</text>
+                        <circle cx="110" cy="12" r="3" fill="#00ff9d" />
+                    </svg>
+                </div>
+            </a>
+        </nav>
+
+        <main class="tech-main">
+            <article class="tech-specs">
+                <header class="tech-header">
+                    <h1>System <span class="highlight">Architecture</span></h1>
+                    <p class="subtitle">Deep dive into the open-source privacy engine.</p>
+                </header>
+
+                <section class="tech-block">
+                    <h2>01. The Shell (Hardware)</h2>
+                    <div class="tech-content">
+                        <p>Keepr is built on energy-efficient <strong>ARM Architecture</strong>, ensuring silent
+                            operation and low power consumption (5W idle). It features an integrated <strong>UPS
+                                (Battery Backup)</strong>, allowing the system to gracefully spin down during power
+                            outages or remain accessible during brief interruptions. No noise. No heat. Just uptime.</p>
+                    </div>
+                </section>
+
+                <section class="tech-block">
+                    <h2>02. The Engine (Software Stack)</h2>
+                    <div class="tech-content">
+                        <p>We believe in pure <strong>Open Source</strong> software. No proprietary black boxes. Keepr
+                            pre-configures the industry's best privacy-focused tools:</p>
+                        <ul class="tech-list">
+                            <li><strong>Immich (Photos)</strong>: A high-performance self-hosted photo manager.
+                                Seamlessly migrate from Google Photos/iCloud. Features machine-learning powered search
+                                (running locally on the NPU) and background backup.</li>
+                            <li><strong>Nextcloud (Files)</strong>: The gold standard for self-hosted productivity.
+                                Calendar, Contacts, and Files sync across all your devices.</li>
+                            <li><strong>Jellyfin (Media)</strong>: Hardware-transcoded 4K streaming for your movie and
+                                music collection.</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section class="tech-block">
+                    <h2>03. The Safety Net (Redundancy)</h2>
+                    <div class="tech-content">
+                        <p>Local storage is fast, but redundancy is critical. For heavy users afraid of drive failure,
+                            we offer <strong>Parity Sync</strong>. This optional feature encrypts and shards your
+                            critical data to a cloud provider of your choice (S3, Backblaze, etc.) ensuring that even if
+                            your house burns down, your data survives. You hold the keys.</p>
+                    </div>
+                </section>
+
+                <section class="tech-block">
+                    <h2>04. The Horizon (Roadmap)</h2>
+                    <div class="tech-content">
+                        <p>Keepr is an evolving platform. Upcoming modules include:</p>
+                        <ul class="tech-list">
+                            <li><strong>Git Server</strong>: Host your repositories locally. Avoid big-tech AI scraping
+                                your code.</li>
+                            <li><strong>Web Hosting</strong>: One-click deployment for personal blogs and portfolios.
+                            </li>
+                            <li><strong>Selective Parity</strong>: Choose exactly which folders get cloud redundancy.
+                            </li>
+                            <li><em>And many more in the future...</em></li>
+                        </ul>
+                    </div>
+                </section>
+
+                <div class="action-area">
+                    <a href="/" class="btn-primary">Return to Base</a>
+                </div>
+            </article>
+        </main>
+
+        <!-- SYSTEM FOOTER -->
+        <footer class="system-footer">
+            <div class="status-indicator">
+                <div class="status-dot"></div>
+                <span>System Online [v 0.9.1]</span>
+            </div>
+            <div class="secure-channel">
+                <span>SECURE CHANNEL DETECTED:</span>
+                <a href="mailto:transmission@keepr.systems" class="secure-link">
+                    transmission@keepr.systems <span class="blinking-cursor"></span>
+                </a>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>
