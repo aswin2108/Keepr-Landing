@@ -5,7 +5,12 @@ import { db, collection, addDoc } from './firebase.js';
 document.addEventListener('DOMContentLoaded', () => {
   setupWaitlist();
   setupWishlist();
-  initScene();
+
+  // Only init scene if container exists (Home Page)
+  if (document.getElementById('canvas-container')) {
+    initScene();
+  }
+
   setupNavigation();
 });
 
@@ -20,45 +25,50 @@ function setupNavigation() {
   const backBtnSuccess = document.getElementById('back-to-home-success');
 
   if (backBtnWishlist) {
-    backBtnWishlist.addEventListener('click', resetToHome);
+    backBtnWishlist.addEventListener('click', resetToContent);
   }
 
   if (backBtnSuccess) {
-    backBtnSuccess.addEventListener('click', resetToHome);
+    backBtnSuccess.addEventListener('click', resetToContent);
   }
 }
 
-function resetToHome() {
-  const hero = document.getElementById('hero-view');
-  const features = document.getElementById('features-view');
+// GENERIC RESET FUNCTION
+function resetToContent() {
+  const pageContent = document.querySelector('.page-content');
   const wishlist = document.getElementById('wishlist-view');
   const success = document.getElementById('success-view');
 
   // Hide Overlay Views
-  wishlist.classList.add('hidden');
-  wishlist.classList.remove('fade-out'); // Reset animation class for next time
-  success.classList.add('hidden');
+  if (wishlist) {
+    wishlist.classList.add('hidden');
+    wishlist.classList.remove('fade-out');
+  }
+  if (success) success.classList.add('hidden');
 
-  // Show Home Views
-  hero.classList.remove('hidden', 'fade-out');
-  // Force reflow to restart animations if needed, but simple remove is mostly fine
-  hero.style.opacity = '1';
-  hero.style.transform = 'scale(1)';
-
-  if (features) {
-    features.classList.remove('hidden', 'fade-out');
-    features.style.opacity = '1';
+  // Show Main Content
+  if (pageContent) {
+    pageContent.classList.remove('hidden', 'fade-out');
+    pageContent.style.opacity = '1';
+    pageContent.style.transform = 'scale(1)';
   }
 
   // Reset Scroll
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  // window.scrollTo({ top: 0, behavior: 'smooth' }); // Optional: Keep scroll position? User usually wants to go back to where they were.
+  // Let's scroll to top of content to be safe/clean
+  const signupSection = document.querySelector('.signup-section');
+  if (signupSection) {
+    signupSection.scrollIntoView({ behavior: 'smooth' });
+  } else {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
   document.body.style.overflow = 'auto'; // Ensure scroll is unlocked
 }
 
 function setupWaitlist() {
   const form = document.getElementById('waitlist-form');
-  const hero = document.getElementById('hero-view');
-  const features = document.getElementById('features-view'); // New Section
+  const pageContent = document.querySelector('.page-content');
   const wishlist = document.getElementById('wishlist-view');
   const emailDisplay = document.getElementById('wishlist-email');
   const emailInput = form ? form.querySelector('input') : null;
@@ -85,11 +95,6 @@ function setupWaitlist() {
     }
 
     // Firebase: Add to 'waitlist' collection
-    if (submitBtn) {
-      // Optional: Loading state, but reset it quickly if we want to allow back/forth
-      // keeping it simple for now
-    }
-
     try {
       if (db) {
         await addDoc(collection(db, 'waitlist'), {
@@ -103,21 +108,19 @@ function setupWaitlist() {
     }
 
     // Transition Animation
-    // Fade out both Hero and Features sections
-    hero.classList.add('fade-out');
-    if (features) features.classList.add('fade-out');
+    if (pageContent) {
+      pageContent.classList.add('fade-out');
+    }
 
     setTimeout(() => {
-      hero.classList.add('hidden');
-      if (features) features.classList.add('hidden');
+      if (pageContent) pageContent.classList.add('hidden');
 
-      wishlist.classList.remove('hidden');
-      emailDisplay.value = email;
+      if (wishlist) {
+        wishlist.classList.remove('hidden');
+        if (emailDisplay) emailDisplay.value = email;
+      }
 
-      // UX Update: Allow scrolling for the longer Wishlist form
       document.body.style.overflow = 'auto';
-
-      // Scroll to top
       window.scrollTo({ top: 0, behavior: 'instant' });
     }, 600);
   });
@@ -158,17 +161,14 @@ function setupWishlist() {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    // Check if it's the submit button clicked (form submit event handles this generally)
-
     const formData = new FormData(form);
 
-    // Parse Purpose Checkboxes into Booleans
     const purposeNormal = formData.getAll('purpose').includes('Normal Storage');
     const purposeVideo = formData.getAll('purpose').includes('Video Server');
     const purposeWeb = formData.getAll('purpose').includes('Web Hosting');
 
     const data = {
-      email: emailInput.value,
+      email: emailInput ? emailInput.value : 'unknown',
       storage: formData.get('storage'),
       battery: formData.get('battery'),
       purpose_normal_storage: purposeNormal,
@@ -188,17 +188,17 @@ function setupWishlist() {
     }
 
     // Show Success
-    wishlistView.classList.add('fade-out');
+    if (wishlistView) wishlistView.classList.add('fade-out');
 
-    // Scroll to top for success message
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
     setTimeout(() => {
-      wishlistView.classList.add('hidden');
-      successView.classList.remove('hidden');
-      userDisplayEmail.textContent = data.email;
+      if (wishlistView) wishlistView.classList.add('hidden');
+      if (successView) {
+        successView.classList.remove('hidden');
+        if (userDisplayEmail) userDisplayEmail.textContent = data.email;
+      }
 
-      // Lock scroll again for success screen (it's short)
       document.body.style.overflow = 'hidden';
     }, 600);
   });

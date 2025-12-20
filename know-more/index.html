@@ -34,69 +34,189 @@
         </nav>
 
         <main class="tech-main">
-            <article class="tech-specs">
-                <header class="tech-header">
-                    <h1>System <span class="highlight">Architecture</span></h1>
-                    <p class="subtitle">Deep dive into the open-source privacy engine.</p>
-                </header>
+            <!-- PAGE CONTENT WRAPPER -->
+            <div class="page-content">
+                <article class="tech-specs">
+                    <header class="tech-header">
+                        <h1>System <span class="highlight">Architecture</span></h1>
+                        <p class="subtitle">Deep dive into the open-source privacy engine.</p>
+                    </header>
 
-                <section class="tech-block">
-                    <h2>01. The Shell (Hardware)</h2>
-                    <div class="tech-content">
-                        <p>Keepr is built on energy-efficient <strong>ARM Architecture</strong>, ensuring silent
-                            operation and low power consumption (5W idle). It features an integrated <strong>UPS
-                                (Battery Backup)</strong>, allowing the system to gracefully spin down during power
-                            outages or remain accessible during brief interruptions. No noise. No heat. Just uptime.</p>
+                    <section class="tech-block">
+                        <h2>01. The Shell (Hardware)</h2>
+                        <div class="tech-content">
+                            <p>Keepr is built on energy-efficient <strong>ARM Architecture</strong>, ensuring silent
+                                operation and low power consumption (5W idle). It features an integrated <strong>Battery
+                                    Backup</strong>, protecting the device from electricity outages and keeping
+                                the server running interruption-free.</p>
+                            <p style="margin-top: 1rem;">Storage is fully modular with a <strong>User-Swappable Hard
+                                    Drive</strong> bay, allowing you to easily upgrade or replace drives yourself
+                                without tools.</p>
+                        </div>
+                    </section>
+
+                    <section class="tech-block">
+                        <h2>02. The Engine (Software Stack)</h2>
+                        <div class="tech-content">
+                            <p>We believe in pure <strong>Open Source</strong> software. No proprietary black boxes.
+                                Keepr runs on a custom <strong>Open Source Linux</strong> kernel, providing total
+                                transparency.</p>
+                            <ul class="tech-list">
+                                <li><strong>Immich (Photos):</strong> A high-performance self-hosted photo manager.
+                                    Seamlessly migrate from Google Photos/iCloud. Features machine-learning powered
+                                    search (running locally on the NPU).</li>
+                                <li><strong>Nextcloud (Files):</strong> The gold standard for self-hosted productivity.
+                                    Calendar, Contacts, and Files sync across all your devices.</li>
+                                <li><strong>Jellyfin (Media):</strong> Hardware-transcoded 4K streaming for your movie
+                                    and music collection.</li>
+                                <!-- Merged Horizon Items -->
+                                <li><strong>Git Server:</strong> Host your repositories. Avoid AI scraping your code.
+                                </li>
+                                <li><strong>Web Hosting:</strong> One-click deployment for personal blogs and
+                                    portfolios.</li>
+                                <li>And many more modules available out of the box...</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section class="tech-block">
+                        <h2>03. The Safety Net (Redundancy)</h2>
+                        <div class="tech-content">
+                            <p>Data integrity is paramount. Keepr supports <strong>RAID 0</strong> functionality for
+                                performance and storage maximization.</p>
+                            <p style="margin-top: 0.5rem;">For critical data, we offer optional <strong>Parity
+                                    Sync</strong> ("Selective Parity"). This encrypts and shards your elected folders to
+                                a cloud provider of your choice (S3, Backblaze) ensuring that even in catastrophic
+                                failure, your core data survives.</p>
+                        </div>
+                    </section>
+
+                </article>
+
+                <!-- SIGNUP SECTION (Bottom) -->
+                <div class="signup-section">
+                    <h2>Claim Your <span class="highlight">Sovereignty</span></h2>
+                    <p>Join the movement. Secure your Keepr device today.</p>
+                    <form id="waitlist-form" class="waitlist-form">
+                        <input type="email" placeholder="Enter your email" required />
+                        <button type="submit">
+                            <span>Join Waitlist</span>
+                            <div class="btn-bg"></div>
+                        </button>
+                    </form>
+                    <div class="action-area">
+                        <a href="/" class="btn-secondary">Return to Base</a>
                     </div>
-                </section>
-
-                <section class="tech-block">
-                    <h2>02. The Engine (Software Stack)</h2>
-                    <div class="tech-content">
-                        <p>We believe in pure <strong>Open Source</strong> software. No proprietary black boxes. Keepr
-                            pre-configures the industry's best privacy-focused tools:</p>
-                        <ul class="tech-list">
-                            <li><strong>Immich (Photos)</strong>: A high-performance self-hosted photo manager.
-                                Seamlessly migrate from Google Photos/iCloud. Features machine-learning powered search
-                                (running locally on the NPU) and background backup.</li>
-                            <li><strong>Nextcloud (Files)</strong>: The gold standard for self-hosted productivity.
-                                Calendar, Contacts, and Files sync across all your devices.</li>
-                            <li><strong>Jellyfin (Media)</strong>: Hardware-transcoded 4K streaming for your movie and
-                                music collection.</li>
-                        </ul>
-                    </div>
-                </section>
-
-                <section class="tech-block">
-                    <h2>03. The Safety Net (Redundancy)</h2>
-                    <div class="tech-content">
-                        <p>Local storage is fast, but redundancy is critical. For heavy users afraid of drive failure,
-                            we offer <strong>Parity Sync</strong>. This optional feature encrypts and shards your
-                            critical data to a cloud provider of your choice (S3, Backblaze, etc.) ensuring that even if
-                            your house burns down, your data survives. You hold the keys.</p>
-                    </div>
-                </section>
-
-                <section class="tech-block">
-                    <h2>04. The Horizon (Roadmap)</h2>
-                    <div class="tech-content">
-                        <p>Keepr is an evolving platform. Upcoming modules include:</p>
-                        <ul class="tech-list">
-                            <li><strong>Git Server</strong>: Host your repositories locally. Avoid big-tech AI scraping
-                                your code.</li>
-                            <li><strong>Web Hosting</strong>: One-click deployment for personal blogs and portfolios.
-                            </li>
-                            <li><strong>Selective Parity</strong>: Choose exactly which folders get cloud redundancy.
-                            </li>
-                            <li><em>And many more in the future...</em></li>
-                        </ul>
-                    </div>
-                </section>
-
-                <div class="action-area">
-                    <a href="/" class="btn-primary">Return to Base</a>
                 </div>
-            </article>
+            </div>
+
+            <!-- VIEW 2: WISHLIST SURVEY (Overlay) -->
+            <section id="wishlist-view" class="wishlist-container hidden">
+                <div class="wishlist-content">
+                    <h2>Build your <span class="highlight">Keepr</span>.</h2>
+                    <p class="subtitle">Customize the specs for your private vault.</p>
+
+                    <form id="wishlist-form">
+                        <div class="form-group">
+                            <label>Registered Email</label>
+                            <input type="email" id="wishlist-email" readonly class="readonly-input" />
+                        </div>
+
+                        <div class="form-group">
+                            <label>Desired Storage</label>
+                            <div class="options-grid">
+                                <label class="option-card">
+                                    <input type="radio" name="storage" value="2TB">
+                                    <span class="card-content">2TB</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="storage" value="4TB" checked>
+                                    <span class="card-content">4TB</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="storage" value="8TB">
+                                    <span class="card-content">8TB</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="storage" value="16TB">
+                                    <span class="card-content">16TB</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Battery Backup</label>
+                            <div class="options-grid">
+                                <label class="option-card">
+                                    <input type="radio" name="battery" value="4hrs">
+                                    <span class="card-content">4hrs</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="battery" value="8hrs" checked>
+                                    <span class="card-content">8hrs</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="battery" value="12hrs">
+                                    <span class="card-content">12hrs</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="battery" value="16hrs">
+                                    <span class="card-content">16hrs</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Usage Purpose</label>
+                            <div class="checkbox-grid">
+                                <label class="checkbox-card">
+                                    <input type="checkbox" name="purpose" value="Normal Storage">
+                                    <span class="checkmark"></span>
+                                    <span>Normal Data Storage</span>
+                                </label>
+                                <label class="checkbox-card">
+                                    <input type="checkbox" name="purpose" value="Video Server">
+                                    <span class="checkmark"></span>
+                                    <span>Video Streaming Server</span>
+                                </label>
+                                <label class="checkbox-card">
+                                    <input type="checkbox" name="purpose" value="Web Hosting">
+                                    <span class="checkmark"></span>
+                                    <span>Website Hosting</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-actions" style="display: flex; flex-direction: column; gap: 1rem;">
+                            <button type="submit" class="submit-wishlist">
+                                Confirm Specs
+                            </button>
+                            <button type="button" class="btn-secondary" id="back-to-home-wishlist"
+                                style="width: 100%; text-align: center;">
+                                ← Back to Home
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- VIEW 3: SUCCESS (Overlay) -->
+            <section id="success-view" class="success-container hidden">
+                <div class="lock-animation">
+                    <svg viewBox="0 0 24 24" class="lock-icon">
+                        <path
+                            d="M12 2C9.243 2 7 4.243 7 7V10H6C4.897 10 4 10.897 4 12V20C4 21.103 4.897 22 6 22H18C19.103 22 20 21.103 20 20V12C20 10.897 19.103 10 18 10H17V7C17 4.243 14.757 2 12 2ZM9 7C9 5.346 10.346 4 12 4C13.654 4 15 5.346 15 7V10H9V7ZM12 17C11.448 17 11 16.552 11 16C11 15.448 11.448 15 12 15C12.552 15 13 15.448 13 16C13 16.552 12.552 17 12 17Z" />
+                    </svg>
+                    <div class="lock-ring"></div>
+                </div>
+                <h2>Protocol Initiated.</h2>
+                <p>Your spot is secured. Welcome to the decentralized future, <span id="user-display-email"
+                        class="highlight"></span>.</p>
+                <div style="margin-top: 2rem;">
+                    <button type="button" class="btn-primary" id="back-to-home-success">Return to Home</button>
+                </div>
+            </section>
+
         </main>
 
         <!-- SYSTEM FOOTER -->
@@ -113,6 +233,8 @@
             </div>
         </footer>
     </div>
+    <!-- Point to main.js at root -->
+    <script type="module" src="/main.js"></script>
 </body>
 
 </html>
