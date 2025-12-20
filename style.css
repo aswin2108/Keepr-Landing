@@ -567,18 +567,11 @@ a {
 .checkbox-card input:checked~.checkmark {
   background: var(--primary);
   border-color: var(--primary);
+  box-shadow: 0 0 10px rgba(0, 255, 157, 0.4);
 }
 
 .checkbox-card input:checked~.checkmark::after {
-  content: '';
-  position: absolute;
-  left: 6px;
-  top: 2px;
-  width: 5px;
-  height: 10px;
-  border: solid black;
-  border-width: 0 2px 2px 0;
-  transform: rotate(45deg);
+  content: none;
 }
 
 .submit-wishlist {
