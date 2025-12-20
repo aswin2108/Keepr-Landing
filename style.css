@@ -594,9 +594,19 @@ a {
   transition: transform 0.2s;
 }
 
+
 .submit-wishlist:hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 30px rgba(0, 255, 157, 0.3);
+}
+
+.submit-wishlist:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+  background: #333;
+  color: #888;
 }
 
 .success-container {
