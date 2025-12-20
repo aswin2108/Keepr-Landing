@@ -16,6 +16,7 @@ function validateEmail(email) {
 function setupWaitlist() {
   const form = document.getElementById('waitlist-form');
   const hero = document.getElementById('hero-view');
+  const features = document.getElementById('features-view'); // New Section
   const wishlist = document.getElementById('wishlist-view');
   const emailDisplay = document.getElementById('wishlist-email');
   const emailInput = form ? form.querySelector('input') : null;
@@ -60,15 +61,22 @@ function setupWaitlist() {
     }
 
     // Transition Animation
+    // Fade out both Hero and Features sections
     hero.classList.add('fade-out');
+    if (features) features.classList.add('fade-out');
 
     setTimeout(() => {
       hero.classList.add('hidden');
+      if (features) features.classList.add('hidden');
+
       wishlist.classList.remove('hidden');
       emailDisplay.value = email;
 
       // UX Update: Allow scrolling for the longer Wishlist form
       document.body.style.overflow = 'auto';
+
+      // Scroll to top
+      window.scrollTo({ top: 0, behavior: 'instant' });
     }, 600);
   });
 }

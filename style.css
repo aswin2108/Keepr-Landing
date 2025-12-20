@@ -28,8 +28,8 @@ body {
   background-color: var(--bg);
   color: var(--text);
   line-height: 1.6;
-  overflow: hidden;
-  /* Lock scroll initially for Hero */
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 /* Custom Scrollbar */
@@ -77,7 +77,7 @@ body {
   filter: drop-shadow(0 0 10px rgba(0, 255, 157, 0.3));
 }
 
-/* Hero */
+/* --- HERO SECTION --- */
 .hero {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -85,8 +85,7 @@ body {
   padding: 0 5%;
   max-width: 1400px;
   margin: 0 auto;
-  height: calc(100vh - 100px);
-  /* Fill remaining height */
+  min-height: calc(100vh - 100px);
   transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
@@ -130,7 +129,6 @@ body {
   box-shadow: 0 0 15px rgba(0, 255, 157, 0.1);
 }
 
-/* Validation Style - Forced */
 .waitlist-form input.input-error {
   border-color: var(--error) !important;
   color: var(--error);
@@ -186,7 +184,7 @@ body {
   margin-top: 0.5rem;
 }
 
-/* Image / Device / Canvas Style */
+/* Hero Canvas Area */
 .hero-image {
   position: relative;
   display: flex;
@@ -209,32 +207,144 @@ body {
   z-index: 1;
 }
 
-/* Animations */
-@keyframes shake {
-
-  10%,
-  90% {
-    transform: translate3d(-1px, 0, 0);
-  }
-
-  20%,
-  80% {
-    transform: translate3d(2px, 0, 0);
-  }
-
-  30%,
-  50%,
-  70% {
-    transform: translate3d(-4px, 0, 0);
-  }
-
-  40%,
-  60% {
-    transform: translate3d(4px, 0, 0);
-  }
+/* --- FEATURES / HUB SECTION --- */
+.features-section {
+  padding: 4rem 5% 8rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-/* Wishlist Survey */
+.features-header {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.features-header h2 {
+  font-size: 3rem;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+
+.features-header p {
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.hub-container {
+  display: grid;
+  grid-template-columns: 1fr 300px 1fr;
+  gap: 2rem;
+  align-items: center;
+  position: relative;
+}
+
+.hub-core-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 400px;
+}
+
+.hub-core {
+  width: 160px;
+  height: 160px;
+  background: radial-gradient(circle at 30% 30%, #1a1a1a, #0a0a0a);
+  border: 2px solid var(--primary);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  box-shadow: 0 0 40px rgba(0, 255, 157, 0.15);
+  position: relative;
+}
+
+.hub-core::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 1px solid var(--primary);
+  opacity: 0.3;
+  animation: core-pulse 3s infinite;
+}
+
+.core-label {
+  font-weight: 700;
+  font-size: 1.5rem;
+  letter-spacing: -1px;
+}
+
+.core-sub {
+  font-size: 0.8rem;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-top: 5px;
+}
+
+.hub-column {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.hub-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  padding: 1.5rem;
+  border-radius: 12px;
+  position: relative;
+  transition: all 0.3s;
+  min-width: 280px;
+}
+
+.hub-card:hover {
+  border-color: var(--primary);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.card-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--primary);
+}
+
+.hub-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.hub-card p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+.tech-tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  color: #aaa;
+}
+
+.connection-line {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* --- WISHLIST SURVEY --- */
 .wishlist-container {
   max-width: 800px;
   margin: 4rem auto;
@@ -278,7 +388,6 @@ body {
   gap: 1rem;
 }
 
-/* Option Cards (Radio) */
 .option-card {
   position: relative;
   cursor: pointer;
@@ -302,14 +411,13 @@ body {
   transition: all 0.3s;
 }
 
-.option-card input:checked+.card-content {
+.option-card:has(input:checked) .card-content {
   border-color: var(--primary);
   background: rgba(0, 255, 157, 0.05);
   box-shadow: 0 0 15px rgba(0, 255, 157, 0.2);
   color: var(--primary);
 }
 
-/* Checkbox Cards */
 .checkbox-card {
   display: flex;
   align-items: center;
@@ -327,6 +435,12 @@ body {
 
 .checkbox-card input {
   display: none;
+}
+
+.checkbox-card:has(input:checked) {
+  border-color: var(--primary);
+  background: rgba(0, 255, 157, 0.05);
+  box-shadow: 0 0 10px rgba(0, 255, 157, 0.1);
 }
 
 .checkmark {
@@ -356,7 +470,6 @@ body {
   transform: rotate(45deg);
 }
 
-/* Submit Button */
 .submit-wishlist {
   background: var(--primary);
   color: black;
@@ -375,7 +488,6 @@ body {
   box-shadow: 0 10px 30px rgba(0, 255, 157, 0.3);
 }
 
-/* Success View */
 .success-container {
   display: flex;
   flex-direction: column;
@@ -417,7 +529,31 @@ body {
   margin-bottom: 1rem;
 }
 
-/* Animations & Transitions */
+/* Animations */
+@keyframes shake {
+
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -466,26 +602,122 @@ body {
   }
 }
 
+@keyframes core-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+
+  50% {
+    transform: scale(1.15);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
 .fade-out {
   opacity: 0;
   transform: scale(0.95);
   pointer-events: none;
 }
 
+/* Footer / System Status */
+.system-footer {
+  border-top: 1px solid var(--border);
+  padding: 20px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Space Grotesk', monospace;
+  /* Monospace feel */
+  font-size: 0.9rem;
+  color: #666;
+  background: var(--bg);
+}
+
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--primary);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--primary);
+  animation: pulse 2s infinite;
+}
+
+.secure-channel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.secure-link {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  transition: all 0.3s;
+}
+
+.secure-link:hover {
+  text-shadow: 0 0 10px rgba(0, 255, 157, 0.5);
+  letter-spacing: 1px;
+}
+
+.blinking-cursor {
+  display: inline-block;
+  width: 8px;
+  height: 15px;
+  background: var(--primary);
+  animation: blink 1s step-end infinite;
+}
+
 /* Responsive */
 @media (max-width: 900px) {
-  body {
-    overflow: auto;
-    /* Allow scroll on mobile */
-  }
-
   .hero {
     grid-template-columns: 1fr;
     text-align: center;
     padding-top: 2rem;
     height: auto;
-    min-height: 100vh;
+    min-height: 90vh;
   }
+
+  .hub-container {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .hub-core-container {
+    order: 1;
+    height: auto;
+    margin-bottom: 2rem;
+  }
+
+  .hub-column {
+    order: 2;
+    gap: 2rem;
+  }
+
+  .connection-line {
+    display: none;
+  }
+
+  /* Hide complex lines on mobile */
 
   .hero-content {
     order: 2;
@@ -506,7 +738,9 @@ body {
     margin: 0 auto 2rem;
   }
 
-  .wishlist-container {
-    margin-top: 2rem;
+  .system-footer {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
   }
 }
